@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_provider_app/src/screens/webview_screen.dart';
 import 'package:news_provider_app/src/services/news_service.dart';
 import 'package:provider/provider.dart';
 import 'package:news_provider_app/src/screens/tabs_screen.dart';
@@ -17,7 +18,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Material App',
         theme: myTheme,
-        home: TabsScreen()
+        initialRoute: 'tabs',
+        routes: {
+          'tabs': (BuildContext context ) => TabsScreen(),
+          'webview': (BuildContext context ) => WebViewScreen()
+        },
       ),
     );
   }

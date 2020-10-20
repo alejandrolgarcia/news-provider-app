@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:news_provider_app/src/models/news_models.dart';
 import 'package:news_provider_app/src/theme/theme.dart';
 
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 class NewsList extends StatelessWidget {
   
   final List<Article> news;
@@ -37,7 +39,7 @@ class _New extends StatelessWidget {
         _CardTitle( news ),
         _CardImage( news ),
         _CardBody( news ),
-        _CardButton(),
+        _CardButton( news ),
         SizedBox( height: 10),
         Divider()
       ],
@@ -46,6 +48,11 @@ class _New extends StatelessWidget {
 }
 
 class _CardButton extends StatelessWidget {
+
+  final Article news;
+
+  const _CardButton( this.news );
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -60,10 +67,10 @@ class _CardButton extends StatelessWidget {
           ),
           SizedBox(width: 15),
           RawMaterialButton(
-            onPressed: (){},
+            onPressed: () => Navigator.pushNamed(context, 'webview', arguments: news.url),
             fillColor: Colors.blue,
             shape: RoundedRectangleBorder( borderRadius:  BorderRadius.circular(20)),
-            child: Icon( Icons.more)
+            child: Icon( FontAwesomeIcons.eye )
           )
         ],
       ),
@@ -146,7 +153,7 @@ class _CardTopBar extends StatelessWidget {
 
       child: Row(
         children: [
-          Text('${ index +1 }.', style: TextStyle( color: myTheme.accentColor )),
+          Text('${ index +1 }. ', style: TextStyle( color: myTheme.accentColor )),
           Text('${ news.source.name }')
         ],
       ),
